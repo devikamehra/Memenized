@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "391600588130",
+    "firebase_url": "https://memenized-6abc0.firebaseio.com",
+    "project_id": "memenized-6abc0",
+    "storage_bucket": "memenized-6abc0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391600588130:android:2e446c9b70632ba2",
+        "android_client_info": {
+          "package_name": "awe.devikamehra.memenized"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "391600588130-i86ppaitbfs1er99dov1iutcla3e6u97.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "awe.devikamehra.memenized",
+            "certificate_hash": "FED5D34D486A9803B6A040E31878C02B2C75D814"
+          }
+        },
+        {
+          "client_id": "391600588130-s01m01ctaakopaha4qkr67heu3clqefn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdBUjPPiiAQwlfnZsD4XF-bzOGoMHHeTk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391600588130-s01m01ctaakopaha4qkr67heu3clqefn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

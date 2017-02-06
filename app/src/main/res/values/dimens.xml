@@ -1,0 +1,13 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="padding_high">16dp</dimen>
+    <dimen name="height_collapsing_bar_main_activity">56dp</dimen>
+    <dimen name="bottombarheight">56dp</dimen>
+    <dimen name="height_toolbar">194dp</dimen>
+    <dimen name="icon_dimen">50dp</dimen>
+    <dimen name="padding_low">4dp</dimen>
+    <dimen name="padding_medium_2">12dp</dimen>
+    <dimen name="padding_medium_1">8dp</dimen>
+    <dimen name="padding_very_high">64dp</dimen>
+    <dimen name="card_dimen">100dp</dimen>
+</resources>
