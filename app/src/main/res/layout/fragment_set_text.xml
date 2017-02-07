@@ -8,16 +8,16 @@
     tools:context="awe.devikamehra.memenized.view.fragment.SetTextFragment">
 
     <android.support.design.widget.TextInputLayout
+        android:paddingLeft="@dimen/padding_high"
+        android:paddingStart="@dimen/padding_high"
+        android:paddingRight="@dimen/padding_high"
+        android:paddingEnd="@dimen/padding_high"
+        android:paddingTop="@dimen/padding_high"
+        android:paddingBottom="@dimen/padding_high"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:paddingLeft="@dimen/padding_high"
-            android:paddingStart="@dimen/padding_high"
-            android:paddingRight="@dimen/padding_high"
-            android:paddingEnd="@dimen/padding_high"
-            android:paddingTop="@dimen/padding_very_high"
-            android:paddingBottom="@dimen/padding_very_high"
             android:id="@+id/top_text"
             android:hint="@string/top_text"
             android:textColor="@color/colorPrimary"
@@ -27,16 +27,16 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
+        android:paddingLeft="@dimen/padding_high"
+        android:paddingStart="@dimen/padding_high"
+        android:paddingRight="@dimen/padding_high"
+        android:paddingEnd="@dimen/padding_high"
+        android:paddingTop="@dimen/padding_high"
+        android:paddingBottom="@dimen/padding_high"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:paddingLeft="@dimen/padding_high"
-            android:paddingStart="@dimen/padding_high"
-            android:paddingRight="@dimen/padding_high"
-            android:paddingEnd="@dimen/padding_high"
-            android:paddingTop="@dimen/padding_very_high"
-            android:paddingBottom="@dimen/padding_very_high"
             android:id="@+id/bottom_text"
             android:hint="@string/bottom_text"
             android:textColor="@color/colorPrimary"
@@ -44,6 +44,5 @@
             android:layout_height="wrap_content" />
 
     </android.support.design.widget.TextInputLayout>
-
 
 </LinearLayout>

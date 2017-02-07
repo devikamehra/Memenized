@@ -176,7 +176,7 @@ public class FontSelectionFragment extends Fragment {
                 AbstractSnapSelectableAdapter.SelectionType.SINGLE);
         snapSelectableAdapter.addAll(fontList);
         recyclerView.setAdapter(snapSelectableAdapter);
-        Log.d("limit", snapSelectableAdapter.getSelectionLimit() + "");
+
 
         snapSelectableAdapter.setOnSelectionListener(new SelectionListener<String>() {
             @Override
@@ -191,7 +191,6 @@ public class FontSelectionFragment extends Fragment {
 
             @Override
             public void onItemSelected(String s, int i) {
-                Log.d("tag", s);
                 meme.setFont(s);
                 onMemeDataModified(meme);
             }

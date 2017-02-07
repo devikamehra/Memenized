@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,7 +38,6 @@ public class SetTextFragment extends Fragment {
     private Meme meme;
 
     EditText topText, bottomText;
-
     private OnFragmentInteractionListener mListener;
 
     public SetTextFragment() {
@@ -75,7 +73,6 @@ public class SetTextFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_set_text, container, false);
-
         topText = (EditText) view.findViewById(R.id.top_text);
         bottomText = (EditText) view.findViewById(R.id.bottom_text);
         topText.addTextChangedListener(new TextWatcher() {
@@ -164,6 +161,8 @@ public class SetTextFragment extends Fragment {
                 bundle.putSerializable(ARG_PARAM1, meme);
                 Intent intent = new Intent(getContext(), MemeDisplayActivity.class);
                 intent.putExtra(ARG_PARAM1, bundle);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
             }
             default:
@@ -176,7 +175,6 @@ public class SetTextFragment extends Fragment {
                 if (!meme.getFont().equals("")) {
                     return true;
                 } else {
-                    Log.d("error", "occured");
                     new AlertDialog.Builder(getContext())
                             .setMessage(R.string.font_error_msg)
                             .setCancelable(false)
@@ -191,7 +189,6 @@ public class SetTextFragment extends Fragment {
                     return false;
                 }
             } else {
-                Log.d("error", "occured");
                 new AlertDialog.Builder(getContext())
                         .setMessage(R.string.meme_error_msg)
                         .setCancelable(false)
@@ -220,4 +217,7 @@ public class SetTextFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Meme meme);
     }
+
 }
+
+//ca-app-pub-1996633340440045~3013130214

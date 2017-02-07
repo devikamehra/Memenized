@@ -6,9 +6,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Multipart;
-import retrofit2.http.POST;
-import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 /**
@@ -25,11 +22,6 @@ public interface MemeApi {
 
     @GET("/fonts")
     Call<List<String>> getFontList(@Header("X-Mashape-Key") String key);
-
-    @POST("/images")
-    @Multipart
-    Call<ResponseBody> uploadImage(@Header("X-Mashape-Key") String key,
-                                   @Part("image") Byte[] byteArray);
 
     @GET("/meme")
     Call<ResponseBody> createMeme(@Header("X-Mashape-Key") String key,

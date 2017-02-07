@@ -42,7 +42,11 @@
     <string name="title_vh">Title</string>
     <string name="choose">choose one</string>
     <string name="msg">Click on Floating Action Button to get Started</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 
 
-    <string name="meme_api_key">Enter-Your_key_here</string>
+    <string name="meme_api_key">Enter-your-key</string>
+    <string name="displays_meme">Displays meme</string>
+    <string name="empty_list">No meme to show, create one.</string>
+    <string name="your_meme_content_desc">Your Meme</string>
 </resources>

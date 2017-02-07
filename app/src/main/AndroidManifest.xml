@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".Application"
@@ -13,6 +14,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:screenOrientation="portrait"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
         <activity android:name=".view.activity.MainActivity">
@@ -26,6 +28,8 @@
             android:name=".view.activity.MemeGenerationActivity"
             android:label="@string/title_activity_meme_generation"
             android:parentActivityName=".view.activity.MainActivity"
+            android:screenOrientation="portrait"
+            android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -35,11 +39,23 @@
             android:name=".view.activity.MemeDisplayActivity"
             android:label="@string/title_activity_meme_display"
             android:parentActivityName=".view.activity.MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="awe.devikamehra.memenized.view.activity.MainActivity" />
         </activity>
+        <receiver
+            android:name=".control.widget.WidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider" />
+        </receiver>
+        <service
+            android:name=".control.widget.WidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
 </manifest>

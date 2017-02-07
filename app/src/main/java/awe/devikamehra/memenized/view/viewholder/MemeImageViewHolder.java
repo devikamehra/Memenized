@@ -64,19 +64,16 @@ public class MemeImageViewHolder extends SnapSelectableViewHolder<ImageDetail> {
                 .into(new Target() {
                     @Override
                     public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                        Log.d("Picasso", "onBitmapLoaded");
                         imageView.setImageBitmap(bitmap);
                     }
 
                     @Override
                     public void onBitmapFailed(Drawable errorDrawable) {
-                        Log.d("Picasso", "onBitmapFailed");
                         imageView.setImageDrawable(errorDrawable);
                     }
 
                     @Override
                     public void onPrepareLoad(Drawable placeHolderDrawable) {
-                        Log.d("Picasso", "onPrepareLoad");
                         imageView.setImageDrawable(placeHolderDrawable);
                     }
                 });

@@ -8,6 +8,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.MaterialModule;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import awe.devikamehra.memenized.rest.model.BitmapObject;
 import awe.devikamehra.memenized.rest.service.MemeApi;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -25,6 +29,8 @@ public class Application extends android.app.Application{
     private static FirebaseStorage firebaseStorage;
     private static FirebaseAuth firebaseAuth;
     private static String uid;
+    private static List<BitmapObject> list;
+    private static List<String> strings = new ArrayList<>();
 
     private Context context;
 
@@ -34,6 +40,14 @@ public class Application extends android.app.Application{
 
     public static void setUid(String uid) {
         Application.uid = uid;
+    }
+
+    public static List<String> getStrings() {
+        return strings;
+    }
+
+    public static void setStrings(List<String> strings) {
+        Application.strings = strings;
     }
 
     @Override
@@ -74,4 +88,12 @@ public class Application extends android.app.Application{
     }
 
     public static FirebaseAuth getFirebaseAuth() { return FirebaseAuth.getInstance(); }
+
+    public static List<BitmapObject> getList() {
+        return list;
+    }
+
+    public static void setList(List<BitmapObject> list) {
+        Application.list = list;
+    }
 }

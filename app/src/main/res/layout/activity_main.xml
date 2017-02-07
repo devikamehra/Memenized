@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
@@ -24,13 +25,26 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:text="@string/msg"
-        android:layout_gravity="center"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:padding="@dimen/padding_medium_1"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <TextView
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:id="@+id/empty_list"
+        android:text="@string/empty_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:padding="@dimen/padding_medium_2"
+        android:layout_gravity="center|top"
+        android:layout_width="@dimen/icon"
+        android:layout_height="@dimen/icon" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_new_meme"
@@ -44,6 +58,16 @@
         android:layout_marginStart="@dimen/padding_high"
         app:fabSize="normal"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_gravity="bottom|center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id" />
 
 </android.support.design.widget.CoordinatorLayout>
 

@@ -1,5 +1,6 @@
 package awe.devikamehra.memenized.view.activity;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -7,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
@@ -48,7 +48,7 @@ public class MemeGenerationActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meme_generation);
-
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ButterKnife.inject(this);
 
         bottomBar = (AHBottomNavigation) findViewById(R.id.bottom_bar);
@@ -121,7 +121,7 @@ public class MemeGenerationActivity extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(Meme meme) {
-        Log.d("TAG_DATA", meme.getImageUrl() + meme.getFontSize() + meme.getFont() + meme.getBottomText() + meme.getTopText());
+
     }
 
 }

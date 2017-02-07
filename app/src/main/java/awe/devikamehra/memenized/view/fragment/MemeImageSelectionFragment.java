@@ -151,14 +151,11 @@ public class MemeImageSelectionFragment extends Fragment {
                                 childDataSnapshot.child("downloadUrl").getValue().toString()));
                         key = childDataSnapshot.getKey();
                     }
-
-                    Log.d("total",imageList.size() + "");
                     setupRecycler();
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Log.d("Error", databaseError.getMessage());
                 }
             };
             mImageDatabaseReference.addValueEventListener(mValueEventListener);
@@ -188,7 +185,7 @@ public class MemeImageSelectionFragment extends Fragment {
         imageDetailSnapAdapter.addAll(list);
         recyclerView.setAdapter(imageDetailSnapAdapter);
         progressBar.setVisibility(View.GONE);
-        Log.d("TAG", imageDetailSnapAdapter.isSelectionEnabled() + "");
+
         imageDetailSnapAdapter.setOnSelectionListener(new SelectionListener<ImageDetail>() {
             @Override
             public void onSelectionModeEnabled(AbstractSnapSelectableAdapter.SelectionType selectionType) {}

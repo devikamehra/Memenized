@@ -1,6 +1,7 @@
 package awe.devikamehra.memenized.view.activity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -43,12 +44,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MemeDisplayActivity extends AppCompatActivity {
+
     Toolbar toolbar;
     ProgressBar progressBar;
     ImageView imageView;
     Button button;
     AppCompatActivity appCompatActivity = this;
 
+    String displayString = "";
     Meme meme;
     MemeUpload memeUpload;
     private StorageReference mImageStorageReference;
@@ -60,10 +63,19 @@ public class MemeDisplayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meme_display);
-        meme = (Meme) getIntent().getBundleExtra(SetTextFragment.ARG_PARAM1).getSerializable(SetTextFragment.ARG_PARAM1);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        if (getIntent().getBundleExtra(SetTextFragment.ARG_PARAM1) != null){
+            meme = (Meme) getIntent().getBundleExtra(SetTextFragment.ARG_PARAM1).getSerializable(SetTextFragment.ARG_PARAM1);
+        }else  {
+            displayString = getIntent().getStringExtra(MainActivity.SHARE);
+        }
         setFirebaseReferences();
         init();
-        getImage();
+        if (meme != null) {
+            getImage();
+        }else if (!displayString.equals("")){
+            setImage(displayString);
+        }
     }
 
     private void setFirebaseReferences() {
@@ -84,16 +96,15 @@ public class MemeDisplayActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         try {
-                            Log.d("Success", "InGetImage");
                             if (!meme.getImageName().isEmpty()) {
                                 StorageReference photoReference = mImageStorageReference.child(key);
                                 ResponseBody body = response.body();
                                 if (body != null) {
-                                    if (body.contentType().toString().equals(getString(R.string.image_type_file))) {
+                                    if (body.contentType().toString().equals(getString(R.string.image_type_file)) && !appCompatActivity.isDestroyed()) {
                                         photoReference.putBytes(response.body().bytes()).addOnSuccessListener(appCompatActivity, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                             @Override
                                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                                try {Log.d("Success", "InGetImageStorage");
+                                                try {
                                                     MemeUpload memeUpload = new MemeUpload(meme.getImageUrl(),
                                                                                             meme.getTopText(),
                                                                                             meme.getBottomText(),
@@ -110,11 +121,7 @@ public class MemeDisplayActivity extends AppCompatActivity {
                                             }
                                         });
 
-                                    } else {
-                                        Log.d("TAG", "sry");
                                     }
-                                } else {
-                                    Log.d("TAG", "sry");
                                 }
                             }
                         } catch (IOException e) {
@@ -152,47 +159,8 @@ public class MemeDisplayActivity extends AppCompatActivity {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     memeUpload = dataSnapshot.getValue(MemeUpload.class);
-                    Log.d("Success", "dataSnapshot");
                     if (dataSnapshot.getKey().equals(key)) {
-                        Picasso.with(getBaseContext())
-                                .load(memeUpload.getMemeUrl())
-                                .error(new IconDrawable(getBaseContext(), MaterialIcons.md_error))
-                                .placeholder(R.color.colorBackground)
-                                .into(new Target() {
-                                    @Override
-                                    public void onBitmapLoaded(final Bitmap bitmap, Picasso.LoadedFrom from) {
-
-                                        button.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                Intent intent = new Intent();
-                                                intent.setAction(Intent.ACTION_SEND);
-                                                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                                                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-                                                String path = MediaStore.Images.Media.insertImage(getBaseContext().getContentResolver(),
-                                                        bitmap, getString(R.string.title_vh), null);
-
-                                                intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(path));
-                                                intent.setType(getString(R.string.image_type_file));
-                                                startActivity(Intent.createChooser(intent,
-                                                        getString(R.string.choose)));
-                                            }
-                                        });
-                                        imageView.setImageBitmap(bitmap);
-                                        button.setClickable(true);
-                                        progressBar.setVisibility(View.GONE);
-                                    }
-
-                                    @Override
-                                    public void onBitmapFailed(Drawable errorDrawable) {
-                                        imageView.setImageDrawable(errorDrawable);
-                                    }
-
-                                    @Override
-                                    public void onPrepareLoad(Drawable placeHolderDrawable) {
-                                        imageView.setImageDrawable(placeHolderDrawable);
-                                    }
-                                });
+                        setImage(memeUpload.getMemeUrl());
                     }
                 }
 
@@ -218,6 +186,48 @@ public class MemeDisplayActivity extends AppCompatActivity {
             };
             mImageDatabaseReference.addChildEventListener(childEventListener);
         }
+    }
+
+    private void setImage(String s) {
+        Picasso.with(getBaseContext())
+                .load(s)
+                .error(new IconDrawable(getBaseContext(), MaterialIcons.md_error))
+                .placeholder(R.color.colorBackground)
+                .into(new Target() {
+                    @Override
+                    public void onBitmapLoaded(final Bitmap bitmap, Picasso.LoadedFrom from) {
+                        imageView.setImageBitmap(bitmap);
+                        button.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent();
+                                intent.setAction(Intent.ACTION_SEND);
+                                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+                                String path = MediaStore.Images.Media.insertImage(getBaseContext().getContentResolver(),
+                                        bitmap, getString(R.string.title_vh), null);
+
+                                intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(path));
+                                intent.setType(getString(R.string.image_type_file));
+                                startActivity(Intent.createChooser(intent,
+                                        getString(R.string.choose)));
+                            }
+                        });
+
+                        button.setClickable(true);
+                        progressBar.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onBitmapFailed(Drawable errorDrawable) {
+                        imageView.setImageDrawable(errorDrawable);
+                    }
+
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+                        imageView.setImageDrawable(placeHolderDrawable);
+                    }
+                });
     }
 
     @Override

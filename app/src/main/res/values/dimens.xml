@@ -10,4 +10,10 @@
     <dimen name="padding_medium_1">8dp</dimen>
     <dimen name="padding_very_high">64dp</dimen>
     <dimen name="card_dimen">100dp</dimen>
+    <dimen name="icon">100dp</dimen>
+    <dimen name="height_display">200dp</dimen>
+    <dimen name="widget_detail_default_width">250dp</dimen>
+    <dimen name="widget_detail_default_height">180dp</dimen>
+    <dimen name="widget_detail_min_resize_width">220dp</dimen>
+    <dimen name="widget_detail_min_resize_height">180dp</dimen>
 </resources>
