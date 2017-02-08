@@ -3,9 +3,9 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         config {
-            keyAlias 'keymemenized'
+            keyAlias 'keymeme'
             keyPassword 'meme12345'
-            storeFile file('F:/Key/memenized.jks')
+            storeFile file("../keymeme.jks")
             storePassword 'udacity12345'
         }
     }
@@ -52,7 +52,7 @@ dependencies {
     compile 'com.prashantsolanki:Snap-RecyclerView-Utils:2.0.0-beta-6'
     compile 'com.joanzapata.iconify:android-iconify-material:2.2.1'
     compile 'com.firebaseui:firebase-ui-auth:1.1.1'
-        compile 'com.aurelhubert:ahbottomnavigation:2.0.4'
+    compile 'com.aurelhubert:ahbottomnavigation:2.0.4'
     testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'
